@@ -27,7 +27,7 @@ const arrowLeft = document.querySelector(".arrow_left");
 // Ajout du listener
 arrowLeft.addEventListener("Click", function () {
 	// console.log pour tester le fonctionnement du listener
-	console.log("Flèche gauche cliquée");
+	console.log("Flèche gauche cliquée")
 });
 
 // Flèche droite
@@ -37,7 +37,7 @@ const arrowRight = document.querySelector(".arrow_right");
 // Ajout du listener
 arrowRight.addEventListener("Click", function () {
 	// console.log pour tester le fonctionnement du listener
-	console.log("Flèche droite cliquée");
+	console.log("Flèche droite cliquée")
 });
 
 // *********************************
@@ -49,7 +49,7 @@ for (let i = 0; i < slides.lenght; i++) {
 	// Création de la balise <i>
 	const bulletPoint = document.createElement("i");
 	// Ajout des classes à la balise <i>
-	bulletPoint.className = "fa-regular fa-circle-small dot";
+	bulletPoint.classList = "fa-regular fa-circle-small dot";
 	// Rattachement de la balise <i> à l'élément .dots
-	divDots = appenChild(bulletPoint);
-}
+	divDots.appendChild(bulletPoint);
+};
