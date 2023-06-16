@@ -1,3 +1,5 @@
+let currentSlideIndex = 0;
+const divDots = document.querySelector(".dots");
 const slides = [
 	{
 		"image":"slide1.jpg",
@@ -17,39 +19,61 @@ const slides = [
 	}
 ];
 
-// ***********************************
-// Ajout des listeners sur les flèches
-// ***********************************
 // Flèche gauche
 // ************* 
-// Récupération de l'élément .arrow_left
 const arrowLeft = document.querySelector(".arrow_left");
-// Ajout du listener
-arrowLeft.addEventListener("Click", function () {
-	// console.log pour tester le fonctionnement du listener
-	console.log("Flèche gauche cliquée")
-});
+arrowLeft.addEventListener("click", goToPreviousSlide);
 
 // Flèche droite
 // ************* 
-// Récupération de l'élément .arrow_right
 const arrowRight = document.querySelector(".arrow_right");
-// Ajout du listener
-arrowRight.addEventListener("Click", function () {
-	// console.log pour tester le fonctionnement du listener
-	console.log("Flèche droite cliquée")
-});
+arrowRight.addEventListener("click", goToNextSlide);
 
-// *********************************
 // Ajout des bullet points au slider
 // *********************************
-for (let i = 0; i < slides.lenght; i++) {
-	// Récupération de l'élément .dots
-	const divDots = document.querySelector(".dots");
-	// Création de la balise <i>
+for (let i = 0; i < slides.length; i++) {
 	const bulletPoint = document.createElement("i");
-	// Ajout des classes à la balise <i>
 	bulletPoint.classList = "fa-regular fa-circle-small dot";
-	// Rattachement de la balise <i> à l'élément .dots
+	if (i == 0) {
+		bulletPoint.classList.add("dot_selected")
+	};
 	divDots.appendChild(bulletPoint);
 };
+
+function goToNextSlide() {
+	console.log("Flèche droite cliquée")
+	currentSlideIndex = currentSlideIndex + 1
+	if (currentSlideIndex >= slides.length) {
+		currentSlideIndex = 0
+	};
+	displayImage(currentSlideIndex)
+};
+
+function goToPreviousSlide() {
+	console.log("Flèche gauche cliquée")
+	currentSlideIndex = currentSlideIndex - 1
+	if (currentSlideIndex < 0) {
+		currentSlideIndex = 3
+	};
+	displayImage(currentSlideIndex)
+};
+
+function resetAllDots() {
+	divDots.querySelectorAll(".dot").forEach(dot => {
+		dot.classList.remove('dot_selected')
+	})
+};
+
+function displayImage(currentSlideIndex) {
+	// changer le bullet point actif
+	resetAllDots()
+	const bullets = divDots.querySelectorAll('.dot')
+	const bullet = bullets[currentSlideIndex]
+	bullet.classList.add('dot_selected')
+	//change l'image
+	const bannerImg = document.querySelector(".banner-img")
+	bannerImg.src = "./assets/images/slideshow/" + slides[currentSlideIndex].image
+	//change le texte correspondant à l'image
+	const bannerP = document.querySelector(".banner-p")
+	bannerP.innerHTML = slides[currentSlideIndex].tagLine
+}
