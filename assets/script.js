@@ -40,6 +40,22 @@ for (let i = 0; i < slides.length; i++) {
 	divDots.appendChild(bulletPoint);
 };
 
+// Fonctions
+//**********
+function displayImage(currentSlideIndex) {
+	// changer le bullet point actif
+	resetAllDots()
+	const bullets = divDots.querySelectorAll('.dot')
+	const bullet = bullets[currentSlideIndex]
+	bullet.classList.add('dot_selected')
+	//changer l'image
+	const bannerImg = document.querySelector(".banner-img")
+	bannerImg.src = "./assets/images/slideshow/" + slides[currentSlideIndex].image
+	//changer le texte correspondant à l'image
+	const bannerP = document.querySelector("#banner p")
+	bannerP.innerHTML = slides[currentSlideIndex].tagLine
+};
+
 function goToNextSlide() {
 	console.log("Flèche droite cliquée")
 	currentSlideIndex = currentSlideIndex + 1
@@ -62,18 +78,4 @@ function resetAllDots() {
 	divDots.querySelectorAll(".dot").forEach(dot => {
 		dot.classList.remove('dot_selected')
 	})
-};
-
-function displayImage(currentSlideIndex) {
-	// changer le bullet point actif
-	resetAllDots()
-	const bullets = divDots.querySelectorAll('.dot')
-	const bullet = bullets[currentSlideIndex]
-	bullet.classList.add('dot_selected')
-	//change l'image
-	const bannerImg = document.querySelector(".banner-img")
-	bannerImg.src = "./assets/images/slideshow/" + slides[currentSlideIndex].image
-	//change le texte correspondant à l'image
-	const bannerP = document.querySelector(".banner-p")
-	bannerP.innerHTML = slides[currentSlideIndex].tagLine
 }
