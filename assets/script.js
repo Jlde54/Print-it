@@ -69,7 +69,7 @@ function goToPreviousSlide() {
 	console.log("Flèche gauche cliquée")
 	currentSlideIndex = currentSlideIndex - 1
 	if (currentSlideIndex < 0) {
-		currentSlideIndex = 3
+		currentSlideIndex = (slides.length - 1)
 	};
 	displayImage(currentSlideIndex)
 };
